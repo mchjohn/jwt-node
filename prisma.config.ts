@@ -7,5 +7,5 @@ export default defineConfig({
   migrations: {
     path: "prisma/migrations",
   },
-  datasource: {url: ENV.JWT_SECRET},
+  datasource: { url: ENV.JWT_SECRET },
 });

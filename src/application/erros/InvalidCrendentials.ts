@@ -1,3 +1,3 @@
-export class InvalidCrendentials extends Error{
-  name = "InvalidCrendentials"
+export class InvalidCrendentials extends Error {
+  name = "InvalidCrendentials";
 }

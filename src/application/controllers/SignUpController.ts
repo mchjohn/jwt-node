@@ -1,4 +1,5 @@
 import z, { ZodError } from "zod";
+
 import { AccountAlreadyExists } from "../erros/AccountAlreadyExists.js";
 import type {
   IController,

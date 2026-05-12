@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "format": "biome format --write .",
     "lint": "biome check --write .",
@@ -16,18 +16,25 @@
   "type": "module",
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
+    "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.6.2",
+    "@types/pg": "^8.20.0",
     "dotenv": "^17.4.2",
     "globals": "^17.6.0",
     "prisma": "^7.8.0",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.3"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "pg": "^8.20.0",
+    "save-dev": "^0.0.1-security",
     "zod": "^4.4.3"
   }
 }

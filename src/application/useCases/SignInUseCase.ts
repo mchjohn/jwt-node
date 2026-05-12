@@ -1,5 +1,6 @@
 import { compare } from "bcryptjs";
-import { sign } from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
+
 import { ENV } from "../../config/env.js";
 import { InvalidCrendentials } from "../erros/InvalidCrendentials.js";
 import { prismaClient } from "../libs/prismaClient.js";
@@ -30,7 +31,7 @@ export class SignInUseCase {
       throw new InvalidCrendentials();
     }
 
-    const accessToken = sign(
+    const accessToken = jwt.sign(
       {
         sub: account.id,
       },

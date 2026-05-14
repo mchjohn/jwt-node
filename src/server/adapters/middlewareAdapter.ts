@@ -5,7 +5,7 @@ import type { IMiddleware } from "../../application/interfaces/IMiddleware.js";
 export function middlewareAdapter(middleWate: IMiddleware) {
   return async (request: Request, response: Response, next: NextFunction) => {
     const result = await middleWate.handle({
-      headers: request.headers as Record<string, string>
+      headers: request.headers as Record<string, string>,
     });
 
     if ("statusCode" in result) {
@@ -14,8 +14,8 @@ export function middlewareAdapter(middleWate: IMiddleware) {
 
     request.metadata = {
       ...request.metadata,
-      ...result.data
-    }
+      ...result.data,
+    };
     next();
   };
 }

@@ -1,5 +1,5 @@
 import { compare } from "bcryptjs";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 import { ENV } from "../../config/env.js";
 import { InvalidCrendentials } from "../erros/InvalidCrendentials.js";

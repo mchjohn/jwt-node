@@ -6,7 +6,7 @@ import type {
 
 export class ListCardsController implements IController {
   async handle({ accountId }: IRequest): Promise<IResponse> {
-    console.log({ accountId })
+    console.log({ accountId });
 
     return {
       statusCode: 200,

@@ -1,7 +1,10 @@
 import express from "express";
 
+import { makeAuthenticationMiddleWare } from "../application/factories/makeAuthenticationMiddleWare.js";
+import { makeListCardsController } from "../application/factories/makeListCardsController.js";
 import { makeSignInController } from "../application/factories/makeSignInController.js";
 import { makeSignUpController } from "../application/factories/makeSignUpController.js";
+import { middlewareAdapter } from "./adapters/middlewareAdapter.js";
 import { routeAdapter } from "./adapters/routeAdapter.js";
 
 const PORT = 3001;
@@ -10,5 +13,11 @@ app.use(express.json());
 
 app.post("/sign-up", routeAdapter(makeSignUpController()));
 app.post("/sign-in", routeAdapter(makeSignInController()));
+
+app.get(
+  "/cards",
+  middlewareAdapter(makeAuthenticationMiddleWare()),
+  routeAdapter(makeListCardsController()),
+);
 
 app.listen(PORT, () => console.log("Server is running!"));

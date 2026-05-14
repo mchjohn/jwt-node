@@ -1,5 +1,6 @@
 export interface IRequest {
   body: Record<string, any>;
+  accountId: string | undefined;
 }
 
 export interface IResponse {

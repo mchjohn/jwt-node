@@ -2,8 +2,8 @@ import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import { ENV } from "../../config/env.js";
-import { InvalidCrendentials } from "../erros/InvalidCrendentials.js";
 import { prismaClient } from "../libs/prismaClient.js";
+import { InvalidCredentials } from "../erros/InvalidCredentials.js";
 
 interface IInput {
   email: string;
@@ -22,13 +22,13 @@ export class SignInUseCase {
     });
 
     if (!account) {
-      throw new InvalidCrendentials();
+      throw new InvalidCredentials();
     }
 
     const validPassword = await compare(password, account.password);
 
     if (!validPassword) {
-      throw new InvalidCrendentials();
+      throw new InvalidCredentials();
     }
 
     const accessToken = jwt.sign(

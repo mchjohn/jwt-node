@@ -1,11 +1,12 @@
 import z, { ZodError } from "zod";
-import { InvalidCrendentials } from "../erros/InvalidCrendentials.js";
+
 import type {
   IController,
   IRequest,
   IResponse,
 } from "../interfaces/IController.js";
 import type { SignInUseCase } from "../useCases/SignInUseCase.js";
+import { InvalidCredentials } from "../erros/InvalidCredentials.js";
 
 const schema = z.object({
   email: z.email(),
@@ -36,7 +37,7 @@ export class SignInController implements IController {
         };
       }
 
-      if (error instanceof InvalidCrendentials) {
+      if (error instanceof InvalidCredentials) {
         return {
           statusCode: 401,
           body: { error: "Invalid credentials." },

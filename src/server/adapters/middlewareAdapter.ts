@@ -5,6 +5,8 @@ import type { IMiddleware } from "../../application/interfaces/IMiddleware.js";
 export function middlewareAdapter(middleWate: IMiddleware) {
   return async (request: Request, response: Response, next: NextFunction) => {
     const result = await middleWate.handle({
+      body: request.body,
+      account: request.metadata?.account,
       headers: request.headers as Record<string, string>,
     });
 

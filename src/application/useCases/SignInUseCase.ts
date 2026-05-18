@@ -2,8 +2,8 @@ import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 import { ENV } from "../../config/env.js";
-import { prismaClient } from "../libs/prismaClient.js";
 import { InvalidCredentials } from "../erros/InvalidCredentials.js";
+import { prismaClient } from "../libs/prismaClient.js";
 
 interface IInput {
   email: string;
@@ -18,7 +18,7 @@ export class SignInUseCase {
   async execute({ email, password }: IInput): Promise<IOutput> {
     const account = await prismaClient.account.findUnique({
       where: { email },
-      select: { id: true, password: true },
+      select: { id: true, password: true, role: true },
     });
 
     if (!account) {
@@ -34,6 +34,7 @@ export class SignInUseCase {
     const accessToken = jwt.sign(
       {
         sub: account.id,
+        role: account.role,
       },
       ENV.JWT_SECRET,
       { expiresIn: "2d" },

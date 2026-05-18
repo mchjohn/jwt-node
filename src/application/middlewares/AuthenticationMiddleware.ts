@@ -1,12 +1,12 @@
-import jwt from "jsonwebtoken";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 
 import { ENV } from "../../config/env.js";
 import type {
   IData,
   IMiddleware,
-  IRequest,
   IResponse,
 } from "../interfaces/IMiddleware.js";
+import type { IRequest } from "../interfaces/IRequest.js";
 
 export class AuthenticationMiddleware implements IMiddleware {
   async handle({ headers }: IRequest): Promise<IResponse | IData> {
@@ -28,11 +28,17 @@ export class AuthenticationMiddleware implements IMiddleware {
         throw new Error();
       }
 
-      const payload = jwt.verify(accessToken as string, ENV.JWT_SECRET);
+      const payload = jwt.verify(
+        accessToken as string,
+        ENV.JWT_SECRET,
+      ) as JwtPayload;
 
       return {
         data: {
-          accountId: payload.sub,
+          account: {
+            id: payload.sub,
+            role: payload.role,
+          },
         },
       };
     } catch {

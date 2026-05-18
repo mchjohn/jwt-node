@@ -1,6 +1,4 @@
-export interface IRequest {
-  headers: Record<string, string>;
-}
+import type { IRequest } from "./IRequest.js";
 
 export interface IResponse {
   statusCode: 200 | number;

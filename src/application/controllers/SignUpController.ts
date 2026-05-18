@@ -1,11 +1,8 @@
 import z, { ZodError } from "zod";
 
 import { AccountAlreadyExists } from "../erros/AccountAlreadyExists.js";
-import type {
-  IController,
-  IRequest,
-  IResponse,
-} from "../interfaces/IController.js";
+import type { IController, IResponse } from "../interfaces/IController.js";
+import type { IRequest } from "../interfaces/IRequest.js";
 import type { SignUpUseCase } from "../useCases/SignUpUseCase.js";
 
 const schema = z.object({

@@ -1,12 +1,9 @@
-import type {
-  IController,
-  IRequest,
-  IResponse,
-} from "../interfaces/IController.js";
+import type { IController, IResponse } from "../interfaces/IController.js";
+import type { IRequest } from "../interfaces/IRequest.js";
 
 export class ListCardsController implements IController {
-  async handle({ accountId }: IRequest): Promise<IResponse> {
-    console.log({ accountId });
+  async handle({ account }: IRequest): Promise<IResponse> {
+    console.log({ account });
 
     return {
       statusCode: 200,

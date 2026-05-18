@@ -1,7 +1,4 @@
-export interface IRequest {
-  body: Record<string, any>;
-  accountId: string | undefined;
-}
+import type { IRequest } from "./IRequest.js";
 
 export interface IResponse {
   statusCode: number;

@@ -7,19 +7,39 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Role {
-  ADMIN
-  USER
-
-  @@map("role")
-}
-
 model Account {
   id       String @id @default(uuid()) @db.Uuid
   name     String
   email    String @unique
   password String
-  role     Role   @default(USER)
+  roleId   String @map("role_id") @db.Uuid
+
+  role Role @relation(fields: [roleId], references: [id])
 
   @@map("accounts")
+}
+
+model Role {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+
+  accounts Account[]
+
+  @@map("roles")
+}
+
+model Permission {
+  id   String @id @default(uuid()) @db.Uuid
+  name String
+  code String @unique
+
+  @@map("permissions")
+}
+
+model RolePermission {
+  roleId         String @map("role_id") @db.Uuid
+  permissionCode String @map("permission_id")
+
+  @@id([roleId, permissionCode])
+  @@map("roles_permissions")
 }

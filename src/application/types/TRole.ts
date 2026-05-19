@@ -1,1 +1,1 @@
-export type TRole = "USER" | "ADMIN";
+export type TRole = "cards:write" | "cards:read";

@@ -18,13 +18,13 @@ app.post("/sign-in", routeAdapter(makeSignInController()));
 app.get(
   "/cards",
   middlewareAdapter(makeAuthenticationMiddleWare()),
+  middlewareAdapter(makeAuthorizationMiddleWare(["cards:read"])),
   routeAdapter(makeListCardsController()),
 );
 app.post(
   "/cards",
   middlewareAdapter(makeAuthenticationMiddleWare()),
-
-  middlewareAdapter(makeAuthorizationMiddleWare(["ADMIN"])),
+  middlewareAdapter(makeAuthorizationMiddleWare(["cards:write"])),
   (req, res) => res.json({ created: true }),
 );
 

@@ -9,7 +9,7 @@ const schema = z.object({
   name: z.string().min(2),
   email: z.email(),
   password: z.string().min(6),
-  roleId: z.uuid()
+  roleId: z.uuid(),
 });
 
 export class SignUpController implements IController {
